@@ -1,4 +1,4 @@
-const ProductManager = require('/productManager.js')
+const ProductManager = require('./productManager.js')
 
 const manager = new ProductManager()
 
@@ -17,4 +17,5 @@ manager.crearProducto({
 //Consultar productos
 
 manager.consultarProductos()
-.then(productos => console.log('Productos', productos));
+.then(productos => console.log('Productos', productos))
+.catch(error => console.error("Error al consultar usuario", error))

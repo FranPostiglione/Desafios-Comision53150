@@ -15,7 +15,7 @@ class ProductManager {
             await fs.writeFile(this.path, JSON.stringify(usuarios, null, 2))
             console.log('Producto creado correctamente')
         } catch (error) {
-            console.error('Error al crear el usuario', error)
+            console.error('Error al crear el producto', error)
         }
     }
 
@@ -30,7 +30,7 @@ class ProductManager {
 
     async leerUsuarios(){
         try {
-            const data = await fs.readFile(this.usariosFile, 'utf8')
+            const data = await fs.readFile(this.path, 'utf8')
             return JSON.parse(data)
         } catch (error) {
             if(error.code === 'ENOENT') {
