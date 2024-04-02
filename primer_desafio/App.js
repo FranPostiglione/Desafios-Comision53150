@@ -1,7 +1,10 @@
+const fs = require('fs/promises')
+
 class ProductManager {
     constructor() {
         this.products = []
         this.nextId = 1
+        this.path = 'Productos.json'
     }
 
 
@@ -46,7 +49,44 @@ class ProductManager {
 
     isCodeDuplicate(code) {
         return this.products.some((p) => p.code === code)
+    };
+
+    //Desafio 2
+    async crearProducto(producto){
+        try {
+            let productos = await this.leerProducto
+
+            productos.push(producto)
+            await fs.writeFile(this.path, JSON.stringify(usuarios, null, 2))
+            console.log('Producto creado correctamente')
+        } catch (error) {
+            console.error('Error al crear el usuario', error)
+        }
     }
+
+    async consultarProductos(){
+        try {
+            return await this.leerProducto()
+        } catch (error) {
+            console.error('Error al consultar el usuario')
+            return []
+        }
+    }
+
+    async leerUsuarios(){
+        try {
+            const data = await fs.readFile(this.usariosFile, 'utf8')
+            return JSON.parse(data)
+        } catch (error) {
+            if(error.code === 'ENOENT') {
+                return []
+            } else {
+                throw error
+            }
+            
+        }
+    }
+
 }
 
 const productManager = new ProductManager()
@@ -80,7 +120,9 @@ productManager.addProduct({
 })
 
 
-const productos = productManager.getProducts()
+/* const productos = productManager.getProducts() */
 /* const producto = productManager.getProductById(1)  */
 
-console.log(productos)
+/* console.log(productos) */
+
+ module.exports = ProductManager
