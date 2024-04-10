@@ -1,10 +1,9 @@
 const ProductManager = require('./productManager.js')
 
 const manager = new ProductManager()
-
 //Crear nuevo producto
 
-manager.crearProducto({
+manager.addProduct({
     title: "Remera nike",
     description: "Lisa de algodon",
     price: 12.99,
@@ -12,7 +11,7 @@ manager.crearProducto({
     code: 'A400',
     stock: 5
 })
-manager.crearProducto({
+manager.addProduct({
     title: "Pantalon Adidas",
     description: "Liso de friza",
     price: 15.99,
@@ -21,8 +20,10 @@ manager.crearProducto({
     stock: 5
 })
 
-//Consultar productos
 
-//manager.consultarProductos()
+
+//manager.getProducts()
+
 .then(productos => console.log('productos', productos))
 .catch(error => console.error("Error al consultar usuario", error))
+

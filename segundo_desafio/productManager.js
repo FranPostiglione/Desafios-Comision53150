@@ -9,7 +9,7 @@ class ProductManager {
     }
 
     //Desafio 2
-    async crearProducto(newProduct){
+    async addProduct(newProduct){
         //let [title, description, price, thumbnail, code, stock, id:newId] = newProduct
         try {
             let productos = await this.leerProducto()
@@ -31,11 +31,11 @@ class ProductManager {
         }
     }
 
-    async consultarProductos(){
+    async getProducts(){
         try {
             return await this.leerProducto()
         } catch (error) {
-            console.error('Error al consultar el usuario')
+            console.error('Error al consultar el producto')
             return []
         }
     } 
@@ -53,7 +53,7 @@ class ProductManager {
             
         }
     }
-    async agregarProductoById(producto_id) {
+    async getProductById(producto_id) {
         let productos = await this.leerProducto(productos)
         const productoUnico = this.productos.find((producto) => producto_id === producto.id)
         if (!productoUnico) {
@@ -62,5 +62,26 @@ class ProductManager {
         }
         return productoUnico
     } 
+    
+    async updateProduct() {
+        try {
+            
+        } catch (error) {
+            
+        }
+    } 
+
+    async removeProduct() {
+        try {
+            fs.unlinkSync('Productos.json')
+                console.log('Archivo productos eliminado correctamente')
+        } catch (error) {
+            console.error('El archivo no se pudo eliminar', error)
+            
+        }
+    }
 }
+
+
+
 module.exports = ProductManager
